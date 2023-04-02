@@ -81,6 +81,7 @@ def md2(text: str):
     return h.hexdigest()
 
 
+# Test Function
 def tuple_hash256(text: str, digest: int):
     hd = TupleHash128.new(digest_bytes=digest)
     hd.update(str(text).encode('utf-8'))
