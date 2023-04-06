@@ -55,38 +55,47 @@ def A1Z26(text: str):
     return "".join(result)
 
 
-def sha256(text: str):
-    hash = hashlib.sha256(str(text).encode('utf-8'))
+def sha256(*args: str):
+    hash = hashlib.sha256(str("".join(args)).encode('utf-8'))
     return hash.hexdigest()
 
 
-def sha1(text: str):
-    hash = hashlib.sha1(str(text).encode('utf-8'))
+def sha224(*args: str):
+    hash = hashlib.sha224(str("".join(args)).encode('utf-8'))
     return hash.hexdigest()
 
 
-def sha512(text: str):
-    hash = hashlib.sha512(str(text).encode('utf-8'))
+def sha384(*args: str):
+    hash = hashlib.sha384(str("".join(args)).encode('utf-8'))
     return hash.hexdigest()
 
 
-def md5(text: str):
-    hash = hashlib.md5(str(text).encode('utf-8'))
+def sha1(*args: str):
+    hash = hashlib.sha1(str("".join(args)).encode('utf-8'))
     return hash.hexdigest()
 
 
-def md2(text: str):
+def sha512(*args: str):
+    hash = hashlib.sha512(str("".join(args)).encode('utf-8'))
+    return hash.hexdigest()
+
+
+def md5(*args: str):
+    hash = hashlib.md5(str("".join(args)).encode('utf-8'))
+    return hash.hexdigest()
+
+
+def md2(*args: str):
     h = MD2.new()
-    h.update(str(text).encode('utf-8'))
+    h.update(str("".join(args)).encode('utf-8'))
     return h.hexdigest()
 
 
-# Test Function
-def tuple_hash256(text: str, digest: int):
+def tuple_hash256(*args: str, digest: int):
     hd = TupleHash128.new(digest_bytes=digest)
-    hd.update(str(text).encode('utf-8'))
+    hd.update(str("".join(args)).encode('utf-8'))
     return hd.hexdigest()
 
 
 if __name__ == "__main__":
-    print(tuple_hash256("Hello", digest=32))
+    print(md5("hello world"))
