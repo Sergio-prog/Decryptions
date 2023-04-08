@@ -8,9 +8,11 @@ List of current encoders:
 * SHA512
 * SHA224
 * SHA384
+* SHA3-256
 * SHA1
 * MD5
 * MD2
+* MD4
 * tuple hash256
 
 # Code

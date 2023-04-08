@@ -1,7 +1,7 @@
 import hashlib
 import string
 from langdetect import detect
-from Cryptodome.Hash import MD2, TupleHash128
+from Cryptodome.Hash import MD2, MD4, TupleHash128, SHA3_256
 
 
 def caesar_cipher(text: str, step: int = 1):
@@ -91,11 +91,23 @@ def md2(*args: str):
     return h.hexdigest()
 
 
+def md4(*args: str):
+    h = MD4.new()
+    h.update(str("".join(args)).encode('utf-8'))
+    return h.hexdigest()
+
+
 def tuple_hash256(*args: str, digest: int):
     hd = TupleHash128.new(digest_bytes=digest)
     hd.update(str("".join(args)).encode('utf-8'))
     return hd.hexdigest()
 
 
+def sha3_256(*args):
+    hd = SHA3_256.new()
+    hd.update(str("".join(args)).encode('utf-8'))
+    return hd.hexdigest()
+
+
 if __name__ == "__main__":
-    print(md5("hello world"))
+    print(sha3_256("123"))
