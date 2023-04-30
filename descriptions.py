@@ -1,7 +1,7 @@
 import hashlib
 import string
 from langdetect import detect
-from Cryptodome.Hash import MD2, MD4, TupleHash128, SHA3_256
+from Cryptodome.Hash import MD2, MD4, TupleHash128, SHA3_256, keccak
 
 
 def caesar_cipher(text: str, step: int = 1):
@@ -97,7 +97,7 @@ def md4(*args: str):
     return h.hexdigest()
 
 
-def tuple_hash256(*args: str, digest: int):
+def tuple_hash256(*args: str, digest: int = 256):
     hd = TupleHash128.new(digest_bytes=digest)
     hd.update(str("".join(args)).encode('utf-8'))
     return hd.hexdigest()
@@ -109,5 +109,11 @@ def sha3_256(*args):
     return hd.hexdigest()
 
 
+def keccak256(*args: str, digest: int = 256):
+    k = keccak.new(digest_bits=digest)
+    k.update(str("".join(args)).encode('utf-8'))
+    return k.hexdigest()
+
+
 if __name__ == "__main__":
-    print(sha3_256("123"))
+    print(keccak256("Hello world!"))

@@ -14,6 +14,7 @@ List of current encoders:
 * MD2
 * MD4
 * tuple hash256
+* keccak 256
 
 # Code
 
